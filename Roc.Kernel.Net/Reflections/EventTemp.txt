@@ -1,0 +1,39 @@
+﻿using System;
+using System.Reflection;
+
+namespace ConsoleApplication1
+{
+   
+    public  class Test
+    {
+        
+        public delegate void delegateTest(string s);
+        public void method1(string s)
+        {
+            Console.WriteLine("Create Delegate Instance: " + s);
+        }
+       
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Test test = new Test();
+            Type t = Type.GetType("ConsoleApplication1.Test");
+            // 因为委托类型编译后是作为类的嵌套类型的，所以这里通过GetNestedType(String s)的方法来获得委托类型。
+            Type nestType = t.GetNestedType("delegateTest");
+
+            MethodInfo method =test.GetType().GetMethod("method1",  BindingFlags.Public | BindingFlags.Static|BindingFlags.Instance);
+            if (method != null)
+            {
+                // 创建委托实例
+                Delegate method1 = Delegate.CreateDelegate(nestType, test, method);
+                //动态调用委托实例
+                method1.DynamicInvoke("Hello");
+            }
+
+            Console.Read();
+        }
+    } 
+}
