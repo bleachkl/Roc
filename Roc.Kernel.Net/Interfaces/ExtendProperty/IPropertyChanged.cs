@@ -17,7 +17,7 @@ namespace Roc.Kernel
         /// <summary>
         /// 是否允许执行属性变化事件
         /// </summary>
-        bool EnabledEventExtPropertyChanged { get; set; }
+        bool EnabledEventExtendPropertyChanged { get; set; }
 
         /// <summary>
         /// 在属性赋值之后前触发增强事件

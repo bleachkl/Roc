@@ -254,7 +254,7 @@ namespace Roc.Kernel
         /// <summary>
         /// 是否允许执行属性变化增强事件
         /// </summary>
-        public virtual bool EnabledEventExtPropertyChanged
+        public virtual bool EnabledEventExtendPropertyChanged
         {
             get => m_EnabledEventExtPropertyChanged;
             set => Set(ref m_EnabledEventExtPropertyChanged, value);
@@ -367,7 +367,7 @@ namespace Roc.Kernel
         /// <param name="propertyName"></param>
         public virtual void OnExtendPropertyChanged(object newValue, object oldValue, [CallerMemberName] string propertyName = "")
         {
-            if (EnabledEventExtPropertyChanged)
+            if (EnabledEventExtendPropertyChanged)
                 ExtendPropertyChanged?.Invoke(this, newValue, oldValue, propertyName);
         }
 
