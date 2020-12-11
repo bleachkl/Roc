@@ -262,7 +262,7 @@ namespace Roc.Kernel
         /// <summary>
         /// 属性变化增强事件
         /// </summary>
-        public event ExtendPropertyChangedEventHandle ExtPropertyChanged;
+        public event ExtendPropertyChangedEventHandle ExtendPropertyChanged;
         #endregion
         #region Notify
         /// <summary>    
@@ -368,7 +368,7 @@ namespace Roc.Kernel
         public virtual void OnExtendPropertyChanged(object newValue, object oldValue, [CallerMemberName] string propertyName = "")
         {
             if (EnabledEventExtPropertyChanged)
-                ExtPropertyChanged?.Invoke(this, newValue, oldValue, propertyName);
+                ExtendPropertyChanged?.Invoke(this, newValue, oldValue, propertyName);
         }
 
         /// <summary>

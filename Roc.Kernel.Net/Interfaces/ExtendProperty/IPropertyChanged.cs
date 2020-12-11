@@ -22,7 +22,7 @@ namespace Roc.Kernel
         /// <summary>
         /// 在属性赋值之后前触发增强事件
         /// </summary>
-        event ExtendPropertyChangedEventHandle ExtPropertyChanged;
+        event ExtendPropertyChangedEventHandle ExtendPropertyChanged;
 
         /// <summary>
         /// 在属性赋值之后增强触发动作
