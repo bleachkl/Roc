@@ -300,8 +300,8 @@ namespace Roc.Kernel
         public virtual bool Set<T>(ref T fieldValue, T newValue, Action<T, T, object> action = default, [CallerMemberName] string propertyName = "")
         {
             var preValue = fieldValue;
-            OnBeforePropertySet(fieldValue, newValue, propertyName);           
-            var changed = !object.Equals(fieldValue, newValue);
+            OnBeforePropertySet(fieldValue, newValue, propertyName);
+            var changed = EqualValue(fieldValue, newValue);
             if (changed
                 && m_GrabChangedProperties)
             {
@@ -329,13 +329,24 @@ namespace Roc.Kernel
                 || !OnlyExecuteOnPropertyChanged)
             {
                 fieldValue = newValue;
-                OnExtPropertyChanged(newValue, preValue, propertyName);
+                OnExtendPropertyChanged(newValue, preValue, propertyName);
                 OnNotified(propertyName);
             }
             action?.Invoke(newValue, preValue, this);
             return changed;
         }
-
+        /// <summary>
+        /// 比较值是否相同默认采用object.Equal
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public virtual bool EqualValue<T>(T fieldValue, T newValue)
+        {
+            return !object.Equals(fieldValue, newValue);
+        }
         /// <summary>
         /// 属性变化前动作
         /// </summary>
@@ -354,7 +365,7 @@ namespace Roc.Kernel
         /// <param name="newValue"></param>
         /// <param name="oldValue"></param>
         /// <param name="propertyName"></param>
-        public virtual void OnExtPropertyChanged(object newValue, object oldValue, [CallerMemberName] string propertyName = "")
+        public virtual void OnExtendPropertyChanged(object newValue, object oldValue, [CallerMemberName] string propertyName = "")
         {
             if (EnabledEventExtPropertyChanged)
                 ExtPropertyChanged?.Invoke(this, newValue, oldValue, propertyName);

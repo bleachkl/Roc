@@ -30,7 +30,7 @@ namespace Roc.Kernel
         /// <param name="newValue">新值</param>
         /// <param name="oldValue">旧值</param>
         /// <param name="propertyName">属性名称</param>
-        void OnExtPropertyChanged(object newValue, object oldValue, [CallerMemberName] string propertyName = "");
+        void OnExtendPropertyChanged(object newValue, object oldValue, [CallerMemberName] string propertyName = "");
 
         /// <summary>
         /// 允许实现界面

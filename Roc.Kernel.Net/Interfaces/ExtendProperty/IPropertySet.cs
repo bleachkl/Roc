@@ -23,5 +23,14 @@ namespace Roc.Kernel
         /// <param name="propertyName">属性名称</param>
         /// <returns>有变化返回true,无变化返回false</returns>
         bool Set<T>(ref T fieldValue, T newValue, Action<T, T, object> action = default, [CallerMemberName] string propertyName = "");
+        /// <summary>
+        /// 比较值是否相同默认采用object.Equal
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="fieldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        bool EqualValue<T>(T fieldValue, T newValue);
     }
 }
